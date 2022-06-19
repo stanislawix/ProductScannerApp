@@ -59,7 +59,7 @@ public class BlueprintsAdapter extends RecyclerView.Adapter<BlueprintsAdapter.Vi
         TextView nameTextView = viewHolder.nameTextView;
         nameTextView.setText(blueprint.getName());
         ImageView imageView = viewHolder.thumbnailImageView;
-//        imageView.set
+        imageView.setImageResource(R.drawable.ic_placeholder);
 
     }
 
