@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.sj.skanercsv.databinding.FragmentFirstBinding;
 
 import java.util.ArrayList;
@@ -30,12 +31,6 @@ public class FirstFragment extends Fragment {
     ) {
 
         binding = FragmentFirstBinding.inflate(inflater, container, false);
-        return binding.getRoot();
-
-    }
-
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
 
         RecyclerView rvBlueprints = (RecyclerView) binding.listaBlueprintow;
 
@@ -49,14 +44,29 @@ public class FirstFragment extends Fragment {
         rvBlueprints.setLayoutManager(new LinearLayoutManager(getContext()));
         rvBlueprints.addItemDecoration(hItemDecoration);
 
-
-        binding.buttonFirst.setOnClickListener(new View.OnClickListener() {
+        binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(FirstFragment.this)
                         .navigate(R.id.action_FirstFragment_to_SecondFragment);
             }
         });
+
+        return binding.getRoot();
+
+    }
+
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+//        binding.buttonFirst.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                NavHostFragment.findNavController(FirstFragment.this)
+//                        .navigate(R.id.action_FirstFragment_to_SecondFragment);
+//            }
+//        });
+
     }
 
     @Override

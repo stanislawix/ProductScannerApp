@@ -14,6 +14,12 @@ public class FullBlueprint {
         this.imgUri = imgUri;
     }
 
+    public FullBlueprint(String name) {
+        this.name = name;
+        this.barcode = "BRAK";
+        this.imgUri = null;
+    }
+
     public String getName() {
         return name;
     }

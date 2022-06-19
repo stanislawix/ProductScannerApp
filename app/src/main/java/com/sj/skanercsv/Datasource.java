@@ -9,7 +9,6 @@ public class Datasource {
 
     public static ArrayList<Blueprint> loadProductBlueprints(Context context) {
         ArrayList<Blueprint> lista = new ArrayList<>();
-        lista.add(new Blueprint(""));
         lista.add(new Blueprint(context.getResources().getString(R.string.affirmation1)));
         lista.add(new Blueprint(context.getResources().getString(R.string.affirmation2)));
         lista.add(new Blueprint(context.getResources().getString(R.string.affirmation3)));

@@ -18,10 +18,14 @@ import com.sj.skanercsv.databinding.ActivityMainBinding;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
+
+//    private ArrayList<FullBlueprint> blueprints;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,13 +40,8 @@ public class MainActivity extends AppCompatActivity {
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
-        binding.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+//        blueprints = PersistentStorage.wczytajBlueprinty();
+
     }
 
     @Override
@@ -72,5 +71,11 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+//        PersistentStorage.zapiszBlueprinty(blueprints);
     }
 }
