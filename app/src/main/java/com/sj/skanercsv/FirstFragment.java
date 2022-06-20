@@ -22,7 +22,7 @@ import java.util.ArrayList;
 public class FirstFragment extends Fragment {
 
     private FragmentFirstBinding binding;
-    private ArrayList<Blueprint> productBlueprints;
+    private ArrayList<FullBlueprint> productBlueprints;
 
     @Override
     public View onCreateView(

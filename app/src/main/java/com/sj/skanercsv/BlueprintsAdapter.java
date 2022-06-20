@@ -15,7 +15,7 @@ import java.util.List;
 
 public class BlueprintsAdapter extends RecyclerView.Adapter<BlueprintsAdapter.ViewHolder> {
 
-    private List<Blueprint> mBlueprints;
+    private List<FullBlueprint> mBlueprints;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private ImageView thumbnailImageView;
@@ -35,7 +35,7 @@ public class BlueprintsAdapter extends RecyclerView.Adapter<BlueprintsAdapter.Vi
         }
     }
 
-    public BlueprintsAdapter(List<Blueprint> blueprints) {
+    public BlueprintsAdapter(List<FullBlueprint> blueprints) {
         mBlueprints = blueprints;
     }
 
@@ -54,7 +54,7 @@ public class BlueprintsAdapter extends RecyclerView.Adapter<BlueprintsAdapter.Vi
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
 
-        Blueprint blueprint = mBlueprints.get(position);
+        FullBlueprint blueprint = mBlueprints.get(position);
 
         TextView nameTextView = viewHolder.nameTextView;
         nameTextView.setText(blueprint.getName());

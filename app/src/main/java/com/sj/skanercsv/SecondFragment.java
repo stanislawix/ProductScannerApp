@@ -6,15 +6,29 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.journeyapps.barcodescanner.ScanContract;
+import com.journeyapps.barcodescanner.ScanOptions;
 import com.sj.skanercsv.databinding.FragmentSecondBinding;
 
 public class SecondFragment extends Fragment {
 
     private FragmentSecondBinding binding;
+
+    // Register the launcher and result handler
+    private final ActivityResultLauncher<ScanOptions> barcodeLauncher = registerForActivityResult(new ScanContract(),
+            result -> {
+                if(result.getContents() == null) {
+                    Toast.makeText(getContext(), "Skanowanie anulowane", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getContext(), "Zeskanowany kod: " + result.getContents(), Toast.LENGTH_LONG).show();
+                    binding.blueprintBarcodeTextInputEditText.setText(result.getContents());
+                }
+            });
 
     @Override
     public View onCreateView(
@@ -52,6 +66,7 @@ public class SecondFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getContext(),"Skanuję", Toast.LENGTH_LONG).show();
+                skanujKod();
             }
         });
 
@@ -70,6 +85,18 @@ public class SecondFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    public void skanujKod() {
+        ScanOptions options = new ScanOptions();
+        options.setDesiredBarcodeFormats(ScanOptions.ALL_CODE_TYPES);
+        options.setPrompt("Zeskanuj kod kreskowy produktu");
+        options.setCameraId(0);  // Use a specific camera of the device
+        options.setBeepEnabled(false);
+        options.setBarcodeImageEnabled(false);
+        options.setOrientationLocked(true);
+        barcodeLauncher.launch(options);
+//        barcodeLauncher.launch(new ScanOptions());
     }
 
 }
