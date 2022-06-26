@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_margin="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/btn_star_big_on" />
@@ -21,18 +20,16 @@
         android:id="@+id/blueprintNameTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:text="Nazwa Blueprintu"
+        android:text="Nazwa blueprintu"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/deleteBlueprintButton"
+        app:layout_constraintEnd_toStartOf="@+id/removeBlueprintButton"
         app:layout_constraintStart_toEndOf="@+id/blueprintImageView"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/blueprintImageView" />
 
     <Button
-        android:id="@+id/deleteBlueprintButton"
+        android:id="@+id/removeBlueprintButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
@@ -41,5 +38,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/blueprintBarcodeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="Kod kreskowy"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/blueprintNameTextView"
+        app:layout_constraintTop_toBottomOf="@+id/blueprintNameTextView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

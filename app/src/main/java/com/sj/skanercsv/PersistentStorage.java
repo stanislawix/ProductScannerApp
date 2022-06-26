@@ -14,6 +14,7 @@ public class PersistentStorage {
 
     static final String nazwa_pliku_z_danymi = "blueprints.txt";
 
+    // metoda zapisująca produkty do pliku w pamięci telefonu
     public static void zapiszBlueprinty(ArrayList<FullBlueprint> blueprints, Context context) throws IOException {
         OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(nazwa_pliku_z_danymi, Context.MODE_PRIVATE));
         for (FullBlueprint b : blueprints) {
@@ -22,6 +23,7 @@ public class PersistentStorage {
         outputStreamWriter.close();
     }
 
+    // metoda wczytująca produkty z pliku w pamięci telefonu
     public static ArrayList<FullBlueprint> wczytajBlueprinty(Context context) throws IOException {
         InputStream inputStream = context.openFileInput(nazwa_pliku_z_danymi);
         if ( inputStream != null ) {
@@ -31,11 +33,11 @@ public class PersistentStorage {
             ArrayList<FullBlueprint> blueprints = new ArrayList<>();
             String tempName, tempBarcode, tempImgUri;
 
-            int wczytaneBLueprinty = 0;
-            while ((textLineFromFile = bufferedReader.readLine()) != null && wczytaneBLueprinty < 2) {
+            int wczytaneBlueprinty = 0;
+            while ((textLineFromFile = bufferedReader.readLine()) != null) {
                 String[] blueprintInStringArray = textLineFromFile.split(";");
                 if (blueprintInStringArray.length != 3) {
-                    System.out.println("Nieprawidlowy blueprint nr " + (wczytaneBLueprinty + 1) + "w pliku data.txt!");
+                    System.out.println("Nieprawidlowy blueprint nr " + (wczytaneBlueprinty + 1) + "w pliku data.txt!");
                     for (int i = 0; i < blueprintInStringArray.length; i++)
                         System.out.println("\"" + blueprintInStringArray[i] + "\"");
                 } else {
@@ -44,16 +46,16 @@ public class PersistentStorage {
                     tempImgUri = blueprintInStringArray[2];
                     blueprints.add(new FullBlueprint(tempName, tempBarcode, tempImgUri));
                     System.out.println(blueprints.get(blueprints.size() - 1));
-                    wczytaneBLueprinty++;
+                    wczytaneBlueprinty++;
                 }
             }
 
-            System.out.println("Wczytano " + wczytaneBLueprinty + " linie z pliku data.txt");
+            System.out.println("Wczytano " + wczytaneBlueprinty + " linie z pliku data.txt");
             inputStream.close();
             return blueprints;
         } else {
-            Toast.makeText(context, "Nie udało się wczytać danych historycznych!", Toast.LENGTH_LONG).show();
-            throw new RuntimeException("Nie udalo sie wczytac danych historycznych z pliku data.txt");
+            Toast.makeText(context, "Nie udało się wczytać danych z pliku data.txt!", Toast.LENGTH_LONG).show();
+            throw new RuntimeException("Nie udalo sie wczytac danych z pliku data.txt");
         }
     }
 

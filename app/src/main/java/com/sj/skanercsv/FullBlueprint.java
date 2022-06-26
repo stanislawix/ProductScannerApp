@@ -14,10 +14,10 @@ public class FullBlueprint {
         this.imgUri = imgUri;
     }
 
-    public FullBlueprint(String name) {
+    public FullBlueprint(String name, String barcode) {
         this.name = name;
-        this.barcode = "BRAK";
-        this.imgUri = null;
+        this.barcode = barcode;
+        this.imgUri = "BRAK";
     }
 
     public String getName() {
@@ -46,7 +46,7 @@ public class FullBlueprint {
 
     @Override
     public String toString() {
-        return String.format("{};{};{}\r\n", name, barcode, imgUri);
+        return String.format("%s;%s;%s\r\n", name, barcode, imgUri);
     }
 
     @Override
